@@ -1,0 +1,27 @@
+version: '0.1'
+
+services:
+
+  application-back:
+    image: joaocarazzato/provamodulo7:back-prova
+    # build: backend/.
+    network_mode: host
+    restart: always
+    expose:
+      - "8000"
+    ports:
+      - 8000:8000
+    container_name: back-prova
+
+  application-front:
+    image: joaocarazzato/provamodulo7:front-prova
+    # build: frontend/.
+    restart: always
+    network_mode: host
+    expose:
+      - "3000"
+    ports:
+      - 3000:3000
+    depends_on:
+    - application-back
+    container_name: front-prova
